@@ -1,0 +1,38 @@
+
+  
+<div class="card-group">
+<div class="card mb-3" style="border: 3px solid gray; margin: 5%; background-color:rgb(164, 180, 196);" *ngFor="let movie of allMovies; let i=index">
+ 
+    <div class="row ">
+      <div class="col-md-6">
+        <img [src]="photoUrl+movie.movie_image_address" style="max-height: 300px;" class="img-fluid rounded-start"  alt="...">
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h3 class="card-title">{{movie.movie_name}}</h3>
+          <p class="card-text">{{movie.movie_description}}</p>
+          <h1>  
+            {{title}}   {{setStar(movie.movie_rating)}}
+          </h1>  
+          <br>  
+          <a *ngFor="let item of starList; let i=index " >  
+            <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+           </a>  
+          <br>  
+          Rating :- {{rating}} stars  
+          <div *ngIf="isUserAdmin()!=true; then thenBlock1 else elseBlock1 " ></div>
+    <ng-template #thenBlock1>
+      <div *ngIf="!performOperation(movie.movie_release_date); then thenBlock2" ></div>
+      <ng-template #thenBlock2>
+        <button type="button" class="btn btn-danger  btn-lg " style="float: right; margin-right: 20%; margin-top: 10%;" routerLink="/book/{{movie.movie_id}}">Book</button>
+      </ng-template>
+           </ng-template>
+    <ng-template #elseBlock1>
+      <button type="button" class="btn btn-danger  btn-lg " style=" margin-right: 20%; margin-top: 10%;"
+      (click)="DeleteMovie(movie.movie_id)">Delete movie</button>
+    </ng-template>
+        </div>
+    </div>
+   </div>
+   </div>
+ </div>

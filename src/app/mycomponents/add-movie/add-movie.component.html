@@ -1,0 +1,58 @@
+
+  <div class="container py-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form #loginForm="ngForm">
+                <div class="form-group row">
+                    <div class="col-sm-6" style="margin-left: 1ve;">
+                        <img [src]=photoFilePath  style="border: 5px solid blue; max-height: 400px;max-width: 400px;"  alt="profile photo">
+                        <label for="photoInput" style="margin-top: 2vh;"> <b>Enter movie photo :</b></label>
+                        <input type="file" (change)=" uploadPhoto($event)" class="form-control custom-file-input my-3" id="photoInput">
+                        
+                       </div>
+                    <div class="col-sm-6 " style="padding: 3%;">
+                        <label for="exampleInputEmail1" ><b>Movie Name:</b></label>
+              <input type="text" class="form-control mb-3 " id="exampleInputEmail1" name="name" #nameControl="ngModel" required  [(ngModel)]="movieName" placeholder="Enter movie name" style="margin-top: 8px; margin-bottom: 12px;">
+              <label for="releasedate" ><b>Movie Release Date</b></label>
+              <input name="date" id="releasedate" class="form-control" [(ngModel)]="movieReleaseDate" type="date" required style="margin-top: 8px; margin-bottom: 12px;" >
+
+              
+              
+              
+
+
+              <label for="exampleFormControlTextarea1"><b>movie description</b></label>
+              <textarea class="form-control my-2" id="exampleFormControlTextarea1" name="description" [(ngModel)]="movieDescription"required #descriptionControl="ngModel" rows="6" style="margin-top: 8px; margin-bottom: 12px;"></textarea>
+           
+                        </div>
+                </div>
+           
+                <div class="form-group row" *ngFor="let number of numbers;let i=index " >
+                    <div class="col-sm-4">
+                        <label for="date">Date</label>
+                        
+                        <input name="date" id="date" class="form-control" [(ngModel)]="showDate[i]" type="date" required >
+                        <p>{{showDate[i]}}</p>
+                   </div>
+                    
+                    <div class="col-sm-4">
+                       
+                        <label for="inputState">Time</label>
+                        <input type="time" class="form-control" [(ngModel)]="showTime[i]"   name="time"   id="inputState" >
+                        <p>{{showTime[i]}}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="inputPostalCode">Fare</label>
+                        <input type="number" class="form-control" id="inputPostalCode" [(ngModel)]="showFare[i]" name="fare" #fareControl="ngModel"  required placeholder="Ticket Price">
+                        <p>{{showFare[i]}}</p>
+                    </div>
+                </div>
+                <a  class="btn btn-secondary btn-lg my-4 " (click)="addAShow()">add a show</a>
+                <button type="button" class="btn btn-primary btn-lg my-4 "(click)="addMovie() " [disabled]="loginForm.invalid" >Save</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+

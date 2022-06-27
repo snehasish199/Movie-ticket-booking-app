@@ -1,0 +1,27 @@
+
+  
+<div class="card-group">
+    <div class="card mb-3" style="border: 3px solid gray; margin: 5%; background-color:rgb(164, 180, 196);" *ngFor="let movie of allMovies; let i=index">
+     
+        <div class="row ">
+          <div class="col-md-6">
+            <img [src]="photoUrl+movie.movie_image_address" style="max-height: 300px;" class="img-fluid rounded-start"  alt="...">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h3 class="card-title">{{movie.movie_name}}</h3>
+              <p class="card-text">{{movie.movie_description}}</p>
+              <h1>  
+                {{title}}   {{setStar(movie.movie_rating)}}
+              </h1>  
+              <br>  
+               
+              <br>  
+              Rating :- {{rating}} stars  
+              <button type="button" class="btn btn-danger  btn-lg " style=" margin-right: 20%; margin-top: 10%;"
+              (click)="DeleteMovie(movie.id)">Delete movie</button> </div>
+          </div>
+        </div>
+        </div>
+      
+      </div>

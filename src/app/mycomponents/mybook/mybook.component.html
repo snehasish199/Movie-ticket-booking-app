@@ -1,0 +1,51 @@
+<div class="card-group">
+  <div class="card mb-3" style="border: 3px solid gray; margin: 5%; background-color:rgb(164, 180, 196);"
+    *ngFor="let movie of allBooking; let i=index">
+    <div class="row ">
+      <div class="col-md-6">
+        <img [src]="movie.movie_image_address" class="img-fluid rounded-start"
+          style="max-height: 300px; max-width: 400px;" alt="...">
+        <!-- <p> {{getmovie(movie.movie_id)}}</p> -->
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h2 class="card-title">{{movie.movieName}}</h2>
+          <div class="col-md-8">
+            <div *ngIf="performOperation(movie.date);">
+              <label for="review" style="margin-top: 5%;"> Add review:</label>
+              <textarea class="form-control" row="10" [(ngModel)]="movie.review" id="review"></textarea>
+
+            </div>
+
+            <p class="card-text " style="float: inline-start; margin-top: 10%;">{{"Show Time :
+              "+movie.date.split("T")[0] +" at "+ movie.show_time}}</p>
+
+          </div>
+          <div class="col-md-4" *ngIf="performOperation(movie.date);else elseBlock" style="margin-top: 5%;">
+            <label>Give Rating</label>
+
+
+            <br>
+
+            <a *ngFor="let item of movie.myList; let j=index " (click)="setStarTable(i,j)">
+              <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>
+            </a>
+
+
+            <br>
+            Rating :- {{movie.rating}} stars
+
+            <button type="button" class="btn btn-danger  btn-lg "
+              style="float: right; margin-right: 20%; margin-top: 10%;" (click)=addRating(i)>rate</button>
+
+          </div>
+          <ng-template #elseBlock class="row">
+            <button type="button" class="btn btn-danger  btn-lg " style=" margin-right: 20%; margin-top: 10%;"
+              (click)="cancelBooking(movie.id,i)">Cancel Booking</button>
+
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="card-group">
+  <div class="card mb-6" style="border: 3px solid gray; margin: 5%; background-color:rgb(164, 180, 196);">
+    <div class="row ">
+      <div class="col-md-6">
+        <img [src]="photoFilePath" class="img-fluid rounded-start" style="max-height: 300px;" alt="...">
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h2 class="card-title">{{movie.movie_name}}</h2>
+          <p class="card-text">{{movie.movie_description}}</p>
+
+          <div class="col-md-5">
+            <b>show time:</b>
+
+            <select class="form-control" [ngModel]="selectedShowTime" (ngModelChange)="showIndex($event)"
+              name="showtime" #showtimeControl="ngModel" required>
+              <option>----Select----</option>
+              <option *ngFor="let show of futureShowList;let i=index" [value]="i">
+
+                {{show.date.split("T")[0]+" at " + show.show_time }}
+
+
+
+              </option>
+
+            </select>
+
+            <h5>seat left : {{seatCapacity}}</h5>
+          </div>
+
+          <form #loginForm="ngForm">
+            <div class="col-md-6 " style="margin-top: 10%;">
+              <b>No of Ticket</b>
+
+              <select class="form-control" name="noOfTicket" [(ngModel)]="numberOfTicketBook" required
+                #noOfTicketControl="ngModel">
+
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+
+              </select>
+            </div>
+            <div class="col-md-5 " style="margin-top: 10%;">
+              <button type="submit" class="bt btn-primary btn-lg" [disabled]="loginForm.invalid"
+                (click)="bookTicket()">Book</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
